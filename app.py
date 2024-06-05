@@ -7,8 +7,22 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     # display simple content
-    pdf_path = os.path.join(os.getcwd(), 'general_election_odds.pdf')
-    return send_file(pdf_path, as_attachment=True)
+    return """
+    <a href='/most_seats'>Most Seats</a>
+    <a href='/overall_majority'>Overall Majority</a>
+    """
+
+
+@app.route('/overall_majority')
+def majority():
+    pdf_path = os.path.join(os.getcwd(), 'majority.pdf')
+    return send_file(pdf_path)
+
+
+@app.route('/most_seats')
+def most_seats():
+    pdf_path = os.path.join(os.getcwd(), 'most_seats.pdf')
+    return send_file(pdf_path)
 
 
 if __name__ == "__main__":
